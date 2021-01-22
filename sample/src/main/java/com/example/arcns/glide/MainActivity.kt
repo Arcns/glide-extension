@@ -29,16 +29,16 @@ class MainActivity : AppCompatActivity() {
     private fun loadImage() {
         Glide.with(this)
             .loadWithProgress(
-                context = this,
-                networkUrl = "https://data.1freewallpapers.com/download/surreal-landscape-4k.jpg",
-                progressBar = binding.pbTest,
-                progressTextView = binding.tvTest,
-                lifecycleOwner = this,
+                context = this, // 上下文
+                networkUrl = "https://data.1freewallpapers.com/download/surreal-landscape-4k.jpg", // 图片网络地址
+                progressBar = binding.pbTest,// 进度条，可为空
+                progressTextView = binding.tvTest, // 进度文本(x%)，可为空
+                lifecycleOwner = this, // 生命周期感知，生命周期结束时自动解除监听，可为空
                 listener = object : com.arcns.glide.grogress.GlideProgressListener<Drawable>() {
                     override fun onProgress(current: Long, total: Long, percent: Float) {
                         Log.e("GlideProgress", "current:$current,total:$total,percent:$percent")
                     }
-                }
+                } // 进度监听，可为空
             )
             .skipMemoryCache(true)
             .diskCacheStrategy(DiskCacheStrategy.NONE)

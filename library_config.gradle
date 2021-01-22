@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.gitee.Arcns'
+group = 'com.gitee.arcns'
 
 
 android {

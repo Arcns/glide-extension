@@ -106,7 +106,7 @@ class GlideProgressCore {
                 @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
                 fun onDestroy() {
                     forgetProgressUpdate(key)
-                    lifecycleOwner?.lifecycle?.removeObserver(this)
+                    lifecycleOwner.lifecycle.removeObserver(this)
 
                 }
             })

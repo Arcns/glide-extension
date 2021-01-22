@@ -1,14 +1,14 @@
-package com.example.arcns.glideprogress
+package com.example.arcns.glide
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.arcns.glidegrogress.loadWithProgress
+import com.arcns.glide.grogress.loadWithProgress
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.arcns.glideprogress.databinding.ActivityMainBinding
+import com.example.arcns.glide.databinding.ActivityMainBinding
 import java.util.*
 
 
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 progressBar = binding.pbTest,
                 progressTextView = binding.tvTest,
                 lifecycleOwner = this,
-                listener = object : com.arcns.glidegrogress.GlideProgressListener<Drawable>() {
+                listener = object : com.arcns.glide.grogress.GlideProgressListener<Drawable>() {
                     override fun onProgress(current: Long, total: Long, percent: Float) {
                         Log.e("GlideProgress", "current:$current,total:$total,percent:$percent")
                     }

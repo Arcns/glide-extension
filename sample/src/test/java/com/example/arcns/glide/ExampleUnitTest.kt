@@ -1,4 +1,4 @@
-package com.example.arcns.glideprogress
+package com.example.arcns.glide
 
 import org.junit.Test
 

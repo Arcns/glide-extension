@@ -1,4 +1,4 @@
-package com.arcns.glidegrogress
+package com.arcns.glide.grogress
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -99,7 +99,7 @@ fun <T> RequestBuilder<T>.loadWithProgress(
         .toString()// 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
 ): RequestBuilder<T> {
     // 初始化核心
-    com.arcns.glidegrogress.GlideProgressCore.init(context)
+    com.arcns.glide.grogress.GlideProgressCore.init(context)
     // 获取当前进度key
     val key = progressKey ?: glideUrl.toString()
     // 初始化控件
@@ -114,7 +114,7 @@ fun <T> RequestBuilder<T>.loadWithProgress(
         text = "0%"
     }
     // 注册更新回调
-    com.arcns.glidegrogress.GlideProgressCore.expectProgressUpdate(
+    com.arcns.glide.grogress.GlideProgressCore.expectProgressUpdate(
         key,
         object : GlideProgressListener<T>() {
             override fun getGranularityPercentages(): Float =
@@ -132,7 +132,7 @@ fun <T> RequestBuilder<T>.loadWithProgress(
     )
     // 返回RequestBuilder
     return load(
-        com.arcns.glidegrogress.GlideProgressCore.Companion.getGlideUrl(
+        com.arcns.glide.grogress.GlideProgressCore.Companion.getGlideUrl(
             glideUrl,
             key
         )
@@ -148,7 +148,7 @@ fun <T> RequestBuilder<T>.loadWithProgress(
             progressBar?.visibility = View.GONE
             progressTextView?.visibility = View.GONE
             // 注销更新回调
-            com.arcns.glidegrogress.GlideProgressCore.forgetProgressUpdate(key)
+            com.arcns.glide.grogress.GlideProgressCore.forgetProgressUpdate(key)
             // 通知自定义回调
             listener?.onFailed(e, model, target, isFirstResource)
             return false
@@ -165,7 +165,7 @@ fun <T> RequestBuilder<T>.loadWithProgress(
             progressBar?.visibility = View.GONE
             progressTextView?.visibility = View.GONE
             // 注销更新回调
-            com.arcns.glidegrogress.GlideProgressCore.forgetProgressUpdate(key)
+            com.arcns.glide.grogress.GlideProgressCore.forgetProgressUpdate(key)
             // 通知自定义回调
             listener?.onSuccess(resource, model, target, dataSource, isFirstResource)
             return false

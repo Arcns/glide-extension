@@ -1,4 +1,4 @@
-package com.arcns.glidegrogress
+package com.arcns.glide.grogress
 
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException

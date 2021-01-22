@@ -1,4 +1,4 @@
-package com.arcns.glidegrogress
+package com.arcns.glide.grogress
 
 import android.content.Context
 import android.os.Handler

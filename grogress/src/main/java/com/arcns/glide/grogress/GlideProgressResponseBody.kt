@@ -1,4 +1,4 @@
-package com.arcns.glidegrogress
+package com.arcns.glide.grogress
 
 import okhttp3.MediaType
 import okhttp3.ResponseBody

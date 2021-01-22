@@ -2,7 +2,7 @@
 
 #### 介绍
 Glide扩展项目
-- grogress：实现Glide加载进度监听回调
+- progress：实现Glide加载进度监听回调
 - sample：使用案例
 
 

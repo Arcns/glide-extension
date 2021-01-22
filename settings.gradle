@@ -1,2 +1,3 @@
-include ':app'
+include ':glide-grogress'
+include ':sample'
 rootProject.name = "glide-progress"

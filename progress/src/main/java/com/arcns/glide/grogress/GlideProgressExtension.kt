@@ -25,10 +25,29 @@ fun RequestManager.loadWithProgress(
     lifecycleOwner: LifecycleOwner? = null, // 生命周期
     progressBar: ProgressBar? = null, // 进度条控件
     progressTextView: TextView? = null, // 进度文本控件(x%)
-    progressKey: String? = UUID.randomUUID()
-        .toString() // 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
 ): RequestBuilder<Drawable> =
     asDrawable().loadWithProgress(
+        context,
+        networkUrl,
+        listener,
+        lifecycleOwner,
+        progressBar,
+        progressTextView
+    )
+
+/**
+ * 开始进度更新加载
+ */
+fun RequestManager.loadWithProgressCustomKey(
+    context: Context, // 上下文
+    networkUrl: String, // 网络链接
+    listener: GlideProgressListener<Drawable>? = null, // 加载进度回调
+    lifecycleOwner: LifecycleOwner? = null, // 生命周期
+    progressBar: ProgressBar? = null, // 进度条控件
+    progressTextView: TextView? = null, // 进度文本控件(x%)
+    progressKey: String? // 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
+): RequestBuilder<Drawable> =
+    asDrawable().loadWithProgressCustomKey(
         context,
         networkUrl,
         listener,
@@ -48,10 +67,29 @@ fun RequestManager.loadWithProgress(
     lifecycleOwner: LifecycleOwner? = null, // 生命周期
     progressBar: ProgressBar? = null,// 进度条控件
     progressTextView: TextView? = null,// 进度文本控件(x%)
-    progressKey: String? = UUID.randomUUID()
-        .toString()// 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
 ): RequestBuilder<Drawable> =
     asDrawable().loadWithProgress(
+        context,
+        glideUrl,
+        listener,
+        lifecycleOwner,
+        progressBar,
+        progressTextView
+    )
+
+/**
+ * 开始进度更新加载
+ */
+fun RequestManager.loadWithProgressCustomKey(
+    context: Context,// 上下文
+    glideUrl: GlideUrl,// 网络链接
+    listener: GlideProgressListener<Drawable>? = null, // 加载进度回调
+    lifecycleOwner: LifecycleOwner? = null, // 生命周期
+    progressBar: ProgressBar? = null,// 进度条控件
+    progressTextView: TextView? = null,// 进度文本控件(x%)
+    progressKey: String? // 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
+): RequestBuilder<Drawable> =
+    asDrawable().loadWithProgressCustomKey(
         context,
         glideUrl,
         listener,
@@ -60,7 +98,6 @@ fun RequestManager.loadWithProgress(
         progressTextView,
         progressKey
     )
-
 
 /**
  * 开始进度更新加载
@@ -72,9 +109,27 @@ fun <T> RequestBuilder<T>.loadWithProgress(
     lifecycleOwner: LifecycleOwner? = null, // 生命周期
     progressBar: ProgressBar? = null, // 进度条控件
     progressTextView: TextView? = null, // 进度文本控件(x%)
-    progressKey: String? = UUID.randomUUID()
-        .toString() // 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
 ): RequestBuilder<T> = loadWithProgress(
+    context,
+    GlideUrl(networkUrl),
+    listener,
+    lifecycleOwner,
+    progressBar,
+    progressTextView
+)
+
+/**
+ * 开始进度更新加载
+ */
+fun <T> RequestBuilder<T>.loadWithProgressCustomKey(
+    context: Context, // 上下文
+    networkUrl: String, // 网络链接
+    listener: GlideProgressListener<T>? = null, // 加载进度回调
+    lifecycleOwner: LifecycleOwner? = null, // 生命周期
+    progressBar: ProgressBar? = null, // 进度条控件
+    progressTextView: TextView? = null, // 进度文本控件(x%)
+    progressKey: String? // 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
+): RequestBuilder<T> = loadWithProgressCustomKey(
     context,
     GlideUrl(networkUrl),
     listener,
@@ -84,19 +139,38 @@ fun <T> RequestBuilder<T>.loadWithProgress(
     progressKey
 )
 
-
 /**
  * 开始进度更新加载
  */
 fun <T> RequestBuilder<T>.loadWithProgress(
+    context: Context, // 上下文
+    glideUrl: GlideUrl,// 网络链接
+    listener: GlideProgressListener<T>? = null, // 加载进度回调
+    lifecycleOwner: LifecycleOwner? = null, // 生命周期
+    progressBar: ProgressBar? = null, // 进度条控件
+    progressTextView: TextView? = null, // 进度文本控件(x%)
+): RequestBuilder<T> = loadWithProgressCustomKey(
+    context,
+    glideUrl,
+    listener,
+    lifecycleOwner,
+    progressBar,
+    progressTextView,
+    UUID.randomUUID().toString()
+)
+
+
+/**
+ * 开始进度更新加载
+ */
+fun <T> RequestBuilder<T>.loadWithProgressCustomKey(
     context: Context,// 上下文
     glideUrl: GlideUrl,// 网络链接
     listener: GlideProgressListener<T>? = null, // 加载进度回调
     lifecycleOwner: LifecycleOwner? = null, // 生命周期
     progressBar: ProgressBar? = null,// 进度条控件
     progressTextView: TextView? = null,// 进度文本控件(x%)
-    progressKey: String? = UUID.randomUUID()
-        .toString()// 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
+    progressKey: String? // 当前进度key，默认使用uuid并缓存到请求的headers中，为空时使用url作为key（可能会有url重复的问题
 ): RequestBuilder<T> {
     // 初始化核心
     com.arcns.glide.grogress.GlideProgressCore.init(context)

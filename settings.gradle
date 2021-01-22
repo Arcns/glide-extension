@@ -1,3 +1,3 @@
-include ':grogress'
+include ':progress'
 include ':sample'
 rootProject.name = "glide-extension"

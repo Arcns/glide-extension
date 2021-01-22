@@ -7,7 +7,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath deps.gradle_plugins.android
+        classpath 'com.android.tools.build:gradle:4.1.1'
+//        classpath deps.gradle_plugins.android
         classpath deps.gradle_plugins.kotlin
         // 引入仓库插件 需运行gradle wrapper和gradlew install
         classpath deps.gradle_plugins.maven

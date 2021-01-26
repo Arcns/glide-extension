@@ -13,6 +13,7 @@ import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.load.model.LazyHeaders
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.InputStream
 import kotlin.collections.HashMap
 
@@ -41,14 +42,17 @@ class GlideProgressCore {
          */
         fun init(context: Context) {
             if (hasInit) return
-            hasInit = true
             replaceGlideProgressOkHttpClient(context)
         }
 
         /**
          * 替换进度更新OkHttpClient
          */
-        fun replaceGlideProgressOkHttpClient(context: Context) {
+        fun replaceGlideProgressOkHttpClient(
+            context: Context,
+            onCustomOkHttpClient: ((OkHttpClient.Builder) -> Unit)? = null // 自定义OkHttpClient回调，能够使用该回调对OkHttpClient Builder进行操作
+        ) {
+            hasInit = true
             Glide.get(context).registry.replace(
                 GlideUrl::class.java,
                 InputStream::class.java,
@@ -61,8 +65,9 @@ class GlideProgressCore {
                             response.newBuilder()
                                 .body(GlideProgressResponseBody(key, response.body!!))
                                 .build()
-                        })
-                        .build()
+                        }).apply {
+                            onCustomOkHttpClient?.invoke(this)
+                        }.build()
                 )
             )
         }

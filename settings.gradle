@@ -1,0 +1,3 @@
+include ':progress'
+include ':sample'
+rootProject.name = "glide-extension"

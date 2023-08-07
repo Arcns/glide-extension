@@ -1,4 +1,4 @@
-# glide-extension [![](https://www.jitpack.io/v/com.gitee.arcns/glide-extension.svg)](https://www.jitpack.io/#com.gitee.arcns/glide-extension)
+# glide-extension [![](https://jitpack.io/v/Arcns/glide-extension.svg)](https://jitpack.io/#Arcns/glide-extension)
 [English](README.md) | [中文](README-CN.md)
 
 #### Introduction
@@ -24,7 +24,7 @@ allprojects {
 dependencies {
 	 implementation 'com.github.bumptech.glide:glide:4.11.0'
 	 implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
-	 implementation 'com.gitee.arcns:glide-extension:Tag'
+	 implementation 'com.github.Arcns:glide-extension:1.0.0'
 }
 ```
 

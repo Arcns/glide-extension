@@ -1,26 +1,20 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: rootProject.file("dependencies.gradle")
+
 buildscript {
-    apply from: rootProject.file("dependencies.gradle")
     repositories {
         google()
-        jcenter()
-        maven { url "https://jitpack.io" }
+        mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
-//        classpath deps.gradle_plugins.android
-        classpath deps.gradle_plugins.kotlin
-        // 引入仓库插件 需运行gradle wrapper和gradlew install
-        classpath deps.gradle_plugins.maven
+        classpath 'com.android.tools.build:gradle:7.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20"
     }
 }
 
 allprojects {
     repositories {
-        mavenCentral()
         google()
-        jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
     }
 }

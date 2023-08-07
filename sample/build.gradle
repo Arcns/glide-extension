@@ -1,37 +1,69 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
-
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
-
+    compileSdk versions.compile_sdk
+    namespace 'com.arc.fast.flowlayout.sample'
     defaultConfig {
-        applicationId "com.example.arcns.glide"
-        minSdkVersion 16
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        applicationId "com.arc.glide.extension.sample"
+        minSdk versions.min_sdk
+        targetSdk versions.compile_sdk
+        versionCode versions.publish_code
+        versionName versions.publish_name
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+//    signingConfigs {
+//        release {
+//            keyAlias 'sample'
+//            keyPassword 'sample'
+//            storeFile file('../sample.jks')
+//            storePassword 'sample'
+//        }
+//    }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_11
     }
+    // dataBinding
     buildFeatures {
-        viewBinding = true
+        dataBinding true
     }
+
+    viewBinding {
+        enabled = true
+    }
+
+    // 配置打包APK的名称
+//    android.applicationVariants.all {
+//        variant ->
+//            def name = ""
+//            if (variant.buildType.name.contains('release')) {
+//                name = "release"
+//            } else {
+//                name = "debug"
+//            }
+//            variant.outputs.all {
+//                outputFileName = "${defaultConfig.applicationId}_${name}_${variant.versionName}(${variant.versionCode}).apk"
+//            }
+//    }
 }
 
 dependencies {
@@ -41,9 +73,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation "com.github.bumptech.glide:okhttp3-integration:4.11.0"
